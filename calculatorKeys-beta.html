@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<body>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        input
+        {
+            cursor: url('ion-pack-valorant/Ion Precision select.ani'),auto;
+            ::-webkit-inner-spin-button {
+                display: none;
+            }
+        }
+        body
+        {
+            background-image: url('wallpaperflare.com_wallpaper(7).jpg');
+            background-repeat: no-repeat;
+            background-size: clamp(1400px, 100%, 300px);
+            background-attachment: fixed;
+            background-position: center;
+            background-position: bottom;
+            color: #a4a4a482;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+
+        }
+        .output
+        {
+            background-color: #00000000;
+            backdrop-filter: blur(8px);
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            color: #a4a4a482;
+            font-size: 2em;
+            margin: 10px;
+            border-radius: 20px ;
+            border: solid 3px #a4a4a482;
+
+        }
+        button
+        {
+            background-color: #00000000;
+            backdrop-filter: blur(8px);
+            color: #a4a4a482;
+            font-size: 2em;
+            margin: 3px;
+            border-radius: 20px;
+            border-radius: 50% 20%;
+            border: solid 3px #a4a4a482;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+            
+        }
+        
+        button:hover{
+            animation: pulse 2s forwards;
+        }
+        
+        @keyframes pulse {
+            0% {transform: scale(1); }
+            20% { transform: scale(1.2); }
+            100% { transform: translate(1.2); }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translate(0); }
+            19% { transform: translateX(-30%); }
+            50% { transform: translateX(0); }
+            /* 100% { transform: translateX(30%); } */
+        }
+        
+        .parent
+        {
+            background-color: #00000000;
+            backdrop-filter: blur(8px);
+
+            margin: 10px;
+            /* margin-right: auto;
+            margin-left: auto; */
+            padding: 20px;
+
+            border-radius: 20px;
+            border: solid 3px #a4a4a482;
+
+            /* width: 35%; */
+            /* width: clamp(300px, 35%, 500px); */
+            width: 23%;
+            height: 70%;
+
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+            /* float: left;
+            justify-content: space-evenly; */
+            display: flex;
+            float: left;
+        }
+
+        .consoleOutput
+        {
+            background-color: #00000000;
+            backdrop-filter: blur(8px);
+
+            margin: 10px;
+            /* margin-right: auto;
+            margin-left: auto; */
+            padding: 20px;
+
+            border-radius: 20px;
+            border: solid 3px #a4a4a482;
+
+            /* width: 35%; */
+            /* width: clamp(300px, 35%, 500px); */
+            width: 24%;
+            height: 420px;
+
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+            /* float: right;
+            justify-content: space-evenly; */
+            display: flex;
+            float: left;
+        }
+
+        .mainSpan
+        {
+            /* margin-right: auto; */
+            /* margin-left: auto; */
+
+            /* padding: 5px; */
+
+            border: #a4a4a482 solid 2px;
+            
+        }
+
+        .keys
+        {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 15px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        .button-zero
+        {
+            height: 37px;
+            width: 70px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        .methods
+        {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+
+            border-radius: 20px;
+            border: solid 3px #a4a4a482;
+            
+            padding: 10px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        #m0, #m2, #m3, #m1
+        {
+            /* height: 10px; */
+            width: 40px;
+            /* height: 100px; */
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        .numbers
+        {
+            border: #a4a4a482 solid 3px;
+            border-radius: 20px;
+
+            /* background-color: #00000000; */
+            /* backdrop-filter: blur(8px); */
+
+            padding: 10px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        #m4
+        {
+            width: 200px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        #m4:hover 
+        {
+            animation: slideIn 2s forwards;
+        }
+        #m3:hover 
+        {
+            animation: slideIn 2s forwards;
+        }
+        #m2:hover 
+        {
+            animation: slideIn 2s forwards;
+        }
+        #m1:hover 
+        {
+            animation: slideIn 2s forwards;
+        }
+        #m0:hover 
+        {
+            animation: slideIn 2s forwards;
+        }
+
+        .setLocation
+        {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            /* margin-top: 10px; */
+            /* width: 300px; */
+
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+
+        }
+        .space-on-top 
+        {
+            border: solid 53px #00ff0000;
+
+            padding: 10px;
+            cursor: url('ion-pack-valorant/Ion Normal select.cur'),auto;
+            /* cursor: url('Elite Horizontal.cur'),auto; */
+        }
+        
+        #clearButton:hover 
+        {
+            animation: bounce 2s forwards;
+        }
+
+        #output:hover 
+        {
+            animation: bounce 2s forwards;
+        }
+
+        @keyframes bounce 
+        {
+            0% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* .consoleOutput 
+        {
+            /* width: 70%;
+            height: 90%;
+
+            border: solid 3px #a4a4a482;
+            margin: 10px;
+            border-radius: 20px;
+
+            padding: 10px;
+
+            float: right;
+        }
+        .mainSpan
+        {
+            /* display: grid;
+            margin-right: auto;
+            margin-left: auto;
+
+            justify-content: end;
+
+        } */
+
+        .listOutput
+        {
+            border: dotted 1px #a4a4a482;
+        }
+        .consoleOutput
+        {
+            overflow: auto;
+        }
+    </style>
+    <div class="space-on-top">
+
+    </div>
+
+    <!-- <div class="mainSpan"> -->
+
+        <div class="parent">
+            <b>
+            <div class="calculator">
+                <div class="output-div">
+                    <input type="number" readonly id="output" class="output" size="13">
+                </div>
+                
+                <span id="sideBySide">
+    
+                    <div class="keys">
+                        <span class="setLocation">
+                        <!-- <span> -->
+                            <div class="numbers">
+                                <span>
+                                    <button id="b6">7</button>
+                                    <button id="b7">8</button>
+                                    <button id="b8">9</button>
+                                </span>
+                                <br>
+                                <span>
+                                    <button id="b3">4</button>
+                                    <button id="b4">5</button>
+                                    <button id="b5">6</button>
+                                </span>
+                                <br>
+                                <span>
+                                    <button id="b0">1</button>
+                                    <button id="b1">2</button>
+                                    <button id="b2">3</button>
+                                </span>
+                                <br>
+
+                                <span>
+                                    <button id="b9" class="button-zero">0</button>
+                                </span>
+
+                                </div>
+                                <!-- </span> -->
+                                
+                                <div class="methods">
+                                    <button id="m0">*</button>
+                                    <button id="m1">/</button>
+                                    <button id="m2">+</button>
+                                    <button id="m3">-</button>
+                                </div>
+                                
+                                <div class="equal-body">
+                                    <button id="m4">=</button>
+                                    <button id="clearButton">AC</button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </span>
+            </b>
+        </div>
+        <div class="consoleOutput">
+            <!-- comment -->
+        </div>
+    <!-- </div> -->
+    
+    <script>
+        {
+            'use strict';
+
+            let method = "";
+            let _value = "";
+            let $value = "";
+            let $in = "";
+
+            const list = document.querySelector('.consoleOutput');
+            const output = document.querySelector('#output');
+
+            function type()
+            {
+                $in = $in + this.innerText;
+                output.value = $in;
+                console.log($in);
+            }
+
+            document.querySelector('#b0').addEventListener('click',type)
+                document.querySelector('#b1').addEventListener('click',type)
+            document.querySelector('#b2').addEventListener('click',type)
+                    document.querySelector('#b3').addEventListener('click',type)
+                document.querySelector('#b4').addEventListener('click',type)
+            document.querySelector('#b5').addEventListener('click',type)
+                    document.querySelector('#b6').addEventListener('click',type)
+                document.querySelector('#b7').addEventListener('click',type)
+            document.querySelector('#b8').addEventListener('click',type)
+                document.querySelector('#b9').addEventListener('click',type)
+
+
+            // uselessNotes
+                // function letMethod(Object)
+                // {
+                //     if(Object == '*')
+                //     {
+                //         method = 0;
+                //     } else if (Object == '/')
+                //     {
+                //         method = 1;
+                //     } else if (Object == '+')
+                //     {
+                //         method = 2;
+                //     } else if (Object == '-')
+                //     {
+                //         method = 3;
+                //     }
+
+                //     _value = parseFloat(output.value);
+                // }
+
+                // document.querySelector('#m0')
+                //     .addEventListener('click',letMethod(this.innerText));
+                // document.querySelector('#m1')
+                //     .addEventListener('click',letMethod(this.innerText));
+                // document.querySelector('#m2')
+                //     .addEventListener('click',letMethod(this.innerText));
+                // document.querySelector('#m3')
+                //     .addEventListener('click',letMethod(this.innerText));
+
+            function logMethod(mtd)
+            {
+            if(mtd === 0){
+                console.log("*");
+            }
+
+            if(mtd === 1){
+                console.log("/");
+            }
+
+            if(mtd === 2){
+                console.log("+");
+            }
+
+            if(mtd === 3){
+                console.log("-");
+            }
+
+            }
+
+
+            // fob;huika na gr;acv fatarrow
+            document.querySelector('#m0')
+                .addEventListener('click',function(){
+                    method = 0;
+                    // console.log(method);
+                    logMethod(method);
+                    _value = parseFloat(output.value);
+                    output.value = "";
+                    $in = "";
+                });
+
+            document.querySelector('#m1')
+                .addEventListener('click',function(){
+                    method = 1;
+                    // console.log(method);
+                    logMethod(method);
+                    _value = parseFloat(output.value);
+                    output.value = "";
+                    $in = "";
+                });
+
+            document.querySelector('#m2')
+                .addEventListener('click',function (){
+                    method = 2;
+                    // console.log(method);
+                    logMethod(method);
+                    _value = parseFloat(output.value);                
+                    output.value = "";
+                    $in = "";
+                });
+
+            document.querySelector('#m3')
+                .addEventListener('click',function(){
+                    method = 3;
+                    // console.log(method);
+                    logMethod(method);
+                    _value = parseFloat(output.value);                
+                    output.value = "";
+                    $in = "";
+                });
+
+            function equal()
+            {
+                $value = parseFloat(output.value);
+                output.value = "";
+                // output.value = parseFloat(`${_value}${method}${_value}`);
+                function Number(a)
+                {
+                    a = parseFloat(a);
+                    console.log(a.type);
+                }
+                Number(_value);
+                Number($value);
+                
+                if(method === 0)
+                {
+                    // _value * $value;
+                    // output.value = parseFloat(_value) * parseFloat($value);
+                    output.value = _value * $value;
+                } else if (method === 1)
+                {
+                    // _value / $value;
+                    // output.value = parseFloat(_value) / parseFloat($value);
+                    output.value = _value / $value;
+                } else if (method === 2)
+                {
+                    // _value + $value;
+                    // output.value = parseFloat(_value) + parseFloat($value);
+                    output.value = _value + $value;
+                } else if (method === 3)
+                {
+                    // _value - $value;
+                    // output.value = parseFloat(_value) - parseFloat($value);
+                    output.value = _value - $value;
+                }
+
+                // output.value = method === 0 ? _value * $value 
+                //              : method === 1 ? _value / $value 
+                //              : method === 2 ? _value + $value 
+                //              : method === 3 ? _value - $value
+
+                $in = "";
+                _value = "";
+                $value = "";
+                console.warn(output.value);
+            }
+
+            document.querySelector('#m4')
+                .addEventListener('click',equal);
+        }
+
+        function clearAndLog()
+        {           
+                    console.log(`
+                        method: ${method}; &&
+                        _value: ${_value}; &&
+                        $value: ${$value}; &&
+                        $in: ${$in}; &&
+                        --output: ${output.value};
+                    `);
+
+                    document.querySelector('.consoleOutput').innerHTML += `
+                        <p class="listOutput">
+                            method: ${method}; <br>
+                            _value: ${_value}; <br>
+                            $value: ${$value}; <br>
+                            $in: ${$in}; <br>
+                            --output: ${output.value};
+                        </p>
+                    `;
+
+                    $in = "";
+                    _value = "";
+                    $value = "";
+                    method = "";
+
+                    document.querySelector('#output')
+                        .value = "";
+        }
+
+        document.querySelector('#clearButton')
+            .addEventListener('click',clearAndLog);
+        // document.querySelector('#clearButton')
+        //     .addEventListener('click',function()
+        //     {
+        //         // if(method !== "" ||_value !== "" || $value !== "" || $in !== "")
+        //         // {
+                    
+        //             $in = "";
+        //             _value = "";
+        //             $value = "";
+        //             method = "";
+                    
+        //             console.log(`
+        //                 method: ${method}; &&
+        //                 _value: ${_value}; &&
+        //                 $value: ${$value}; &&
+        //                 $in: ${$in}; &&
+        //                 --output: ${output.value};
+        //             `);
+
+        //             document.querySelector('.consoleOutput').innerHTML += `
+        //                 <p class="listOutput">
+        //                     method: ${method}; <br>
+        //                     _value: ${_value}; <br>
+        //                     $value: ${$value}; <br>
+        //                     $in: ${$in}; <br>
+        //                     --output: ${output.value};
+        //                 </p>
+        //             `;
+
+        //             document.querySelector('#output')
+        //                 .value = "";
+        //         // }
+        //         // else if (method === "" && _value === "" && $value === "" && $in === "")
+        //         // {
+        //         //     console.warn('ti kaneis re malaka');
+        //         // }
+        //     });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body
+        {
+            background-color: rgb(45, 39, 70);
+            color: rgb(255, 188, 101);
+            border-radius: 14px;
+            padding: 13px;
+            margin: 13px;
+            align-items: center;
+            font-size: 25px;
+             text-align: center;
+        }
+
+        .buttons
+        {
+            background-color: rgb(45, 39, 70);
+            color: rgb(255, 188, 101);
+            border-radius: 14px;
+            padding: 13px;
+            margin: 13px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .output
+        {
+            background-color: rgb(45, 39, 70);
+            color: rgb(255, 188, 101);
+            border-radius: 14px;
+            padding: 13px;
+            margin: 13px;
+        }
+
+        .input
+        {
+            background-color: rgb(45, 39, 70);
+            color: rgb(255, 188, 101);
+            border-radius: 14px;
+            padding: 13px;
+            margin: 13px;
+        }
+
+        .parent-div
+        {
+            background-color: rgb(31, 26, 51);
+            color: rgb(255, 188, 101);
+            border-radius: 14px;
+            padding: 13px;
+            margin: 13;
+            max-width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        input
+        {
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            color: rgb(255, 188, 101);
+            background-color: rgb(45, 39, 70);
+            padding: 10px;
+            margin-left: 10px;
+        }
+
+        input:hover
+        {
+            border: solid 2px rgb(39, 45, 70);
+        }
+
+        button
+        {
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            background-color: rgb(34, 29, 53);
+            color: rgb(255, 188, 101);
+            padding: 10px;
+        }
+
+        button:hover
+        {
+            animation: main 1s;
+        }
+
+        @keyframes main
+        {
+            0%,100%
+            {
+                transform: scale(100%);
+            }
+            50%
+            {
+                transform: scale(110%);
+            }
+        }
+
+        .title
+        {
+            background-color: rgb(34, 29, 53);
+            color: rgb(255, 188, 101);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            max-width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .insta
+        {
+            background-color: rgb(34, 29, 53);
+            color: rgb(255, 188, 101);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: solid;
+            padding-top: 10px;
+            max-width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <span id="bodySS">
+    <div class="title">
+        <p>
+            <i>
+                calculator
+            </i>
+        </p>
+    </div>
+    <div class="parent-div">
+        <div class="inputs">
+            <input type="number" class="n0"> <br>
+            <input type="number" class="n1">
+        </div>
+        <div class="buttons">
+            <button class="b0">*</button>
+            <button class="b1">/</button>
+            <button class="b2">+</button>
+            <button class="b3">-</button>
+
+            <button class="b4">%</button>
+            <button class="b5">^</button>
+        </div>
+        <div class="output">
+            <h4 class="output"></h4>
+        </div>
+    </div>
+    <div class="title">
+        <a href="https://www.instagram.com/iasonas.tan/" class="insta">instagram</a>
+        <p>
+            <i>
+                <button id="dv">Developers..</button>
+            </i>
+        </p>
+    </div>
+</span>
+    <!-- <script src="main.js"></script> -->
+    <script>
+        function solve() {
+            document.querySelector('.b0').addEventListener('click', function() {
+                document.querySelector('h4').innerText = parseFloat(
+                    parseFloat(
+                        document.querySelector('.n0').value
+                    ) * parseFloat(
+                        document.querySelector('.n1').value
+                    )
+                )
+            })
+            document.querySelector('.b1').addEventListener('click', function() {
+                document.querySelector('h4').innerText = parseFloat(
+                    parseFloat(
+                        document.querySelector('.n0').value
+                    ) / parseFloat(
+                        document.querySelector('.n1').value
+                    )
+                )
+            })
+            document.querySelector('.b2').addEventListener('click', function() {
+                document.querySelector('h4').innerText = parseFloat(
+                    parseFloat(
+                        document.querySelector('.n0').value
+                    ) + parseFloat(
+                        document.querySelector('.n1').value
+                    )
+                )
+            })
+            document.querySelector('.b3').addEventListener('click', function() {
+                document.querySelector('h4').innerText = parseFloat(
+                    parseFloat(
+                        document.querySelector('.n0').value
+                    ) - parseFloat(
+                        document.querySelector('.n1').value
+                    )
+                )
+            })
+            document.querySelector('.b5').addEventListener('click', function() {
+                document.querySelector('h4').innerText = parseFloat(
+                    parseFloat(
+                        document.querySelector('.n0').value
+                    ) ** parseFloat(
+                        document.querySelector('.n1').value
+                    )
+                )
+            })
+        }
+        solve()
+
+        function dv() {
+            document.querySelector('#dv').addEventListener('click', function() {
+                alert('iasonas');
+            })
+        }
+        dv()
+        
+        document.querySelector('.b4').addEventListener('click',function() {
+                document.querySelector('.output').innerText =
+                parseFloat(document.querySelector('.n0').value) %
+                parseFloat(document.querySelector('.n1').value);
+        });
+    </script>
+</body>
+</html>
